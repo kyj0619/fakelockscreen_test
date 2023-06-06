@@ -24,7 +24,7 @@ const storage = getStorage(app);
 
 const Inputpin = () => {
 
-  const [isKeyAuthorized, setIsKeyAuthorized] = useState(null);
+  const [isKeyAuthorized, setIsKeyAuthorized] = useState(true);
 
   useEffect(() => {
     const warning = document.getElementById("warning");
@@ -32,10 +32,10 @@ const Inputpin = () => {
       const key_value = doc.data().authorized;
       console.log(key_value);
       setIsKeyAuthorized(key_value);
-      if(key_value == false){
+      if(key_value === false){
         warning.innerHTML = "비인가된 사용자입니다.";
       }
-      else if(key_value == true){
+      else if(key_value === true){
         warning.innerHTML = "";
       }
     });
