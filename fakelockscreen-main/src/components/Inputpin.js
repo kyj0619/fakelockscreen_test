@@ -81,7 +81,7 @@ const Inputpin = () => {
                // 서버에 이미지 업로드
               const formData = new FormData();
               formData.append('image', captureBlob, 'webcam_capture.png');
-              fetch('http://43.201.200.119:3000/api/capture', {
+              fetch('http://43.201.200.119:3001/api/capture', {
                 method: 'POST',
                 body: formData
               })
