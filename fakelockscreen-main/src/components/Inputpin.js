@@ -28,17 +28,21 @@ const Inputpin = () => {
 
   useEffect(() => {
     const warning = document.getElementById("warning");
+    const docRef = doc(db, "data", "user_state");
     const unsubscribe = onSnapshot(doc(db, "data", "user_state"), (doc) => {
       const key_value = doc.data().authorized;
       console.log(key_value);
       setIsKeyAuthorized(key_value);
       if(key_value === false){
         warning.innerHTML = "비인가된 사용자입니다.";
-      }
-      else if(key_value === true){
-        warning.innerHTML = "";
-      }
-    });
+
+      setTimeout(async () => {
+        await setDoc(docRef, { authorized: true });
+      }, 3000);
+    } else if(key_value === true){
+      warning.innerHTML = "";
+    }
+  });
 
     return () => unsubscribe();
   }, []);
